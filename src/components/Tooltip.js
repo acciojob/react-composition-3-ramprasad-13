@@ -1,20 +1,34 @@
 import React, { useState } from "react";
 
-function Tooltip(props){
-    const {tooltip, tooltipText} = props;
+function Tooltip({ text, children }) {
     const [display, setDisplay] = useState(false);
 
-    function handleDisplay(){
-        setDisplay((prev)=>!prev)
+    // Explicitly set true/false. 
+    // This is safer than toggling (!prev) for hover events.
+    function showTooltip() {
+        setDisplay(true);
+    }
+
+    function hideTooltip() {
+        setDisplay(false);
     }
 
     return (
-        <div className="tooltip">
-            <p className={`tooltiptext ${display?'show':'hide' }`}>{tooltipText}</p>
-            <p onMouseEnter={handleDisplay} onMouseLeave={handleDisplay} className="tooltip" >{tooltip}</p>
+        // The container gets the class 'tooltip' and handles the mouse events
+        <div 
+            className="tooltip" 
+            onMouseEnter={showTooltip} 
+            onMouseLeave={hideTooltip}
+        >
+            {/* Render the element (children) that triggers the tooltip */}
+            {children}
+
+            {/* Render the tooltip text */}
+            <span className={`tooltiptext ${display ? 'show' : 'hide'}`}>
+                {text}
+            </span>
         </div>
     )
-
 }
 
 export default Tooltip;
