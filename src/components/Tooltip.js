@@ -5,11 +5,10 @@ const Tooltip = ({ text, children }) => {
 
   return (
     <div
-      className="tooltip"
       onMouseEnter={() => setShow(true)}
       onMouseLeave={() => setShow(false)}
     >
-      <h2>{children}</h2>
+      <h2 className="tooltip">{children}</h2>
       
       {/* 1. Use Conditional Rendering (&&). 
             If 'show' is false, this line returns null, removing the element from the DOM.
@@ -18,7 +17,7 @@ const Tooltip = ({ text, children }) => {
          2. Use a <div> instead of <p>.
             The test selector looks for a div, fixing "Expected to find element: ... > div".
       */}
-      {show && <p className="tooltiptext">{text}</p>}
+      {show && <p className="tooltip tooltiptext">{text}</p>}
     </div>
   );
 };
