@@ -1,1 +1,8 @@
 
+.show{
+    visibility: visible;
+}
+
+.hide{
+    visibility: hidden;
+}
